@@ -1,3 +1,4 @@
 *.png
 place
+whitelist.csv
 .DS_Store

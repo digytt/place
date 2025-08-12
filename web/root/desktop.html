@@ -2,7 +2,7 @@
 <html>
 
 <head>
-	<title>Place</title>
+	<title>DigyttPlace</title>
 	<link rel="stylesheet" href="desktop.css" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 	<meta name="description" content="An online pixel canvas inspired by r/place.">
@@ -27,26 +27,52 @@
 			</button>
 		</div>
 	</div>
-	<button id="help-button" onclick="document.querySelector('#help-popup').style.visibility = 'visible';">
+
+	<button id="help-button" onclick="document.querySelector('#help-popup').style.visibility = 'visible', document.querySelector('#about-popup').style.visibility = 'hidden';">
 		<p><strong>Help</strong></p>
 	</button>
 	<div id="help-popup">
 		<div id="help-text-desktop">
-			<p><strong>Right Click</strong> to place a pixel.</p><br>
-			<p>Use the mouse wheel or <strong>+</strong> and <strong>-</strong> buttons to zoom in.</p><br>
-			<p><strong>Ctrl + Right Click</strong> to select a color from the canvas.</p><br>
+			<p><strong>Welcome to DigyttPlace!</strong></p><br>
+			<p><strong>Right Click</strong> to place a pixel on the canvas!</p><br>
+			<p>Scroll with your mouse or use the <strong>+</strong> and <strong>-</strong> buttons in the bottom right corner to zoom.</p><br>
+			<p><strong>Ctrl + Right Click</strong> to copy a colour from an existing pixel.</p><br>
 		</div>
 		<div id="help-text-mobile">
+			<p><strong>Welcome to DigyttPlace!</strong></p><br>
 			<p><strong>Tap</strong> to place a pixel.</p><br>
-			<p><strong>Pinch</strong> to zoom or use the <strong>+</strong> and <strong>-</strong> buttons.</p><br>
-			<p><strong>Long press</strong> to select a color from the canvas.</p><br>
+			<p><strong>Pinch</strong> or use <strong>+</strong> and <strong>-</strong> buttons to zoom.</p><br>
+			<p><strong>Long press</strong> to copy a colour from an existing pixel.</p><br>
 		</div>
-		<p>Set a hexadecimal color value in the lower left corner.</p><br>
-		<p>Source code on <a href="https://github.com/rbxb/place" target="_blank">GitHub</a>.</p>
+		<p>To change colour, set a hexadecimal colour value in the bottom left corner.</p><br>
 		<button id="close-help-popup"
-			onclick="document.querySelector('#help-popup').style.visibility = 'hidden';"><strong>Close
-				me.</strong></button>
+			onclick="document.querySelector('#help-popup').style.visibility = 'hidden';"><strong>I don't need help smh close this</strong></button>
 	</div>
+
+		<button id="about-button" onclick="document.querySelector('#about-popup').style.visibility = 'visible', document.querySelector('#about-popup-mobile').style.visibility = 'visible';">
+	<p><strong>About</strong></p>
+	</button>
+	<div id="about-popup">
+		<p><strong>Welcome to DigyttPlace!</strong></p><br>
+		<p>This is a personal project created by Digytt, based off of the source code from this <a href="https://github.com/rbxb/place" target="_blank">GitHub</a> project.</p><br>
+		<p>This is my first personal coding project, so I hope you enjoy it!</p><br>
+		<p>If anyone gets access to this link, feel free to play around, however please don't go sharing it.</p><br>
+		<p>If you need help, use the "Help" button in the top left corner.</p><br>
+		<p>And of course, have fun!</p>
+		<button id="close-about-popup"
+			onclick="document.querySelector('#about-popup').style.visibility = 'hidden';"><strong>Close</strong></button>
+	</div>
+	<div id="about-popup-mobile">
+		<p><strong>Welcome to DigyttPlace!</strong></p><br>
+		<p>This is a personal project created by Digytt, based off of the source code from this <a href="https://github.com/rbxb/place" target="_blank">GitHub</a> project.</p><br>
+		<p>This is my first personal coding project, so I hope you enjoy it!</p><br>
+		<p>If anyone gets access to this link, feel free to play around, however please don't go sharing it.</p><br>
+		<p>If you need help, use the "Help" button in the top left corner.</p><br>
+		<p>And of course, have fun!</p>
+		<button id="close-about-popup"
+			onclick="document.querySelector('#about-popup-mobile').style.visibility = 'hidden';"><strong>Close</strong></button>
+	</div>		
+	
 	<script src="main.js"></script>
 	<script src="place.js"></script>
 	<script src="glwindow.js"></script>

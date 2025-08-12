@@ -37,7 +37,7 @@ class Place {
 		fetch(window.location.protocol + "//" + host + "/place.png")
 			.then(async resp => {
 				if (!resp.ok) {
-					console.error("Error downloading canvas.");
+					console.error("There was an error downloading the canvas. Please try again!");
 					return null;
 				}
 
@@ -89,7 +89,7 @@ class Place {
 
 		const socketError = (event) => {
 			console.error("Error making WebSocket connection.");
-			alert("Failed to connect.");
+			alert("Connection failed. Please try refreshing your page.");
 			this.#socket.close();
 		};
 
@@ -113,8 +113,8 @@ class Place {
 			this.#glWindow.setPixelColor(x, y, color);
 			this.#glWindow.draw();
 		} else {
-			alert("Disconnected.");
-			console.error("Disconnected.");
+			alert("Disconnected from server. Please try refreshing your page.");
+			console.error("Disconnected from server. Please try refreshing your page.");
 		}
 	}
 
@@ -155,13 +155,13 @@ class Place {
 	}
 
 	#keyPrompt() {
-		let key = prompt("This canvas uses a whitelist.\n\nIf you don't have a key you can still view the canvas but you will not be able to draw.\n\nTo request an access key you can create an issue on the GitHub project.\n\nIf you already have one, enter it here.", "");
+		let key = prompt("This canvas uses a whitelist.\n\nIf you don't have a key you can still view the canvas, but you will be unable to place pixels.\n\nTo request an access key, ask Digytt.\n\nIf you already have one, enter it here.", "");
 		fetch("./verifykey?key="+key)
 			.then(async resp => {
 				if (resp.ok) {
 					window.location.reload();
 				} else {
-					alert("Bad key.")
+					alert("The key was incorrect. Please refresh the page and try again.")
 				}
 			});
 	}

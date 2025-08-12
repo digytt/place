@@ -26,7 +26,7 @@ var upgrader = websocket.Upgrader{
 	},
 	Error: func(w http.ResponseWriter, req *http.Request, status int, err error) {
 		log.Println(err)
-		http.Error(w, "Error while trying to make websocket connection.", status)
+		http.Error(w, "Error while trying to make websocket connection. Please try again later!", status)
 	},
 }
 
@@ -69,7 +69,7 @@ func (sv *Server) ServeHTTP(w http.ResponseWriter, req *http.Request) {
 	case "verifykey":
 		sv.HandleSetKeyCookie(w, req)
 	default:
-		http.Error(w, "Not found.", 404)
+		http.Error(w, "An issue occured. (404).", 404)
 	}
 }
 
@@ -106,8 +106,8 @@ func (sv *Server) HandleSocket(w http.ResponseWriter, req *http.Request) {
 	defer sv.Unlock()
 	i := sv.getConnIndex()
 	if i == -1 {
-		log.Println("Server full.")
-		http.Error(w, "Server full.", 503)
+		log.Println("Someone tried to log on, but the server was full. (503).")
+		http.Error(w, "The server is currently full! Please try again later. (503).", http.StatusServiceUnavailable)
 		return
 	}
 	conn, err := upgrader.Upgrade(w, req, nil)
@@ -119,11 +119,13 @@ func (sv *Server) HandleSocket(w http.ResponseWriter, req *http.Request) {
 	sv.clients[i] = ch
 	go sv.readLoop(conn, i, allowDraw, id)
 	go sv.writeLoop(conn, ch, allowDraw)
+	log.Println("A user has joined the canvas!")
 }
 
 func (sv *Server) HandleSetKeyCookie(w http.ResponseWriter, req *http.Request) {
 	if !sv.enableWL {
-		http.Error(w, "Whitelist is not enabled.", 400)
+		log.Println("The whitelist is not enabled. (400).")
+		http.Error(w, "Bad request. (400).", 400)
 		return
 	}
 	key := req.URL.Query().Get("key")
@@ -136,8 +138,10 @@ func (sv *Server) HandleSetKeyCookie(w http.ResponseWriter, req *http.Request) {
 			Expires:  expiration,
 		})
 		w.WriteHeader(200)
+		log.Println("User " + key + " has just logged into the canvas. (There will be a leave/join log below this, this is due to a refresh.)")
 	} else {
-		http.Error(w, "Bad key.", 401)
+		http.Error(w, "Bad key. (401).", http.StatusUnauthorized)
+		log.Println("Someone tried to log in with an invalid username: " + key + " (401).")
 	}
 }
 
@@ -183,15 +187,15 @@ func (sv *Server) readLoop(conn *websocket.Conn, i int, allowDraw bool, id uint1
 			break
 		}
 		if !allowDraw {
-			log.Println("Client kicked for trying to draw without permission.")
+			log.Println("A client was kicked for trying to draw without permission.")
 			break
 		}
 		if !limiter() {
-			log.Println("Client kicked for high rate.")
+			log.Println("A client is being rate limited.")
 			break
 		}
 		if sv.handleMessage(p, id) != nil {
-			log.Println("Client kicked for bad message.")
+			log.Println("A client was kicked for sending a bad request to the server.")
 			break
 		}
 	}
@@ -212,11 +216,13 @@ func (sv *Server) writeLoop(conn *websocket.Conn, ch chan []byte, allowDraw bool
 		}
 	}
 	conn.Close()
+	log.Println("A user has left the canvas.")
 }
 
 func (sv *Server) handleMessage(p []byte, id uint16) error {
 	x, y, c := parseEvent(p)
 	if !sv.setPixel(x, y, c, id) {
+		log.Println("An invalid pixel was placed.")
 		return errors.New("invalid placement")
 	}
 	sv.msgs <- p

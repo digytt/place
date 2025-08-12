@@ -89,7 +89,7 @@ class Place {
 
 		const socketError = (event) => {
 			console.error("Error making WebSocket connection.");
-			alert("Connection failed. Please try refreshing your page.");
+			alert("Connection failed. It's possible the server is currently full, or has been temporarily shut down. Please try again later.");
 			this.#socket.close();
 		};
 
@@ -113,8 +113,8 @@ class Place {
 			this.#glWindow.setPixelColor(x, y, color);
 			this.#glWindow.draw();
 		} else {
-			alert("Disconnected from server. Please try refreshing your page.");
-			console.error("Disconnected from server. Please try refreshing your page.");
+			alert("You have been diconnected from the server. Please refresh your page.");
+			console.error("Server Disconnect");
 		}
 	}
 
@@ -155,13 +155,13 @@ class Place {
 	}
 
 	#keyPrompt() {
-		let key = prompt("This canvas uses a whitelist.\n\nIf you don't have a key you can still view the canvas, but you will be unable to place pixels.\n\nTo request an access key, send a DM to Digytt.\n\nIf you already have one, enter it here.", "");
+		let key = prompt("Whitelist mode is currently enabled.\n\nPlease enter your username to access the canvas.\n\nIf you aren't currently registered, you can still view the canvas, but you will be unable to place pixels.\n\nIf you need to register, send a message to Digytt.", "");
 		fetch("./verifykey?key="+key)
 			.then(async resp => {
 				if (resp.ok) {
 					window.location.reload();
 				} else {
-					alert("The key was incorrect. Please refresh the page and try again.")
+					alert("That username isn't registered. Please refresh your page and try again.\n\nIf you'd like to register, send a DM to Digytt.")
 				}
 			});
 	}

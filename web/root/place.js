@@ -155,7 +155,7 @@ class Place {
 	}
 
 	#keyPrompt() {
-		let key = prompt("This canvas uses a whitelist.\n\nIf you don't have a key you can still view the canvas, but you will be unable to place pixels.\n\nTo request an access key, ask Digytt.\n\nIf you already have one, enter it here.", "");
+		let key = prompt("This canvas uses a whitelist.\n\nIf you don't have a key you can still view the canvas, but you will be unable to place pixels.\n\nTo request an access key, send a DM to Digytt.\n\nIf you already have one, enter it here.", "");
 		fetch("./verifykey?key="+key)
 			.then(async resp => {
 				if (resp.ok) {

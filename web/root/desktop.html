@@ -28,30 +28,33 @@
 		</div>
 	</div>
 
-	<button id="help-button" onclick="document.querySelector('#help-popup').style.visibility = 'visible', document.querySelector('#about-popup').style.visibility = 'hidden';">
-		<p><strong>Help</strong></p>
+	<button id="info-button" onclick="document.querySelector('#info-popup').style.visibility = 'visible';">
+		<p><strong>Info</strong></p>
 	</button>
-	<div id="help-popup">
-		<div id="help-text-desktop">
+	<div id="info-popup">
+		<div id="info-text-desktop">
 			<p><strong>Welcome to DigyttPlace!</strong></p><br>
 			<p><strong>Right Click</strong> to place a pixel on the canvas!</p><br>
 			<p>Scroll with your mouse or use the <strong>+</strong> and <strong>-</strong> buttons in the bottom right corner to zoom.</p><br>
 			<p><strong>Ctrl + Right Click</strong> to copy a colour from an existing pixel.</p><br>
 		</div>
-		<div id="help-text-mobile">
+		<div id="info-text-mobile">
 			<p><strong>Welcome to DigyttPlace!</strong></p><br>
 			<p><strong>Tap</strong> to place a pixel.</p><br>
 			<p><strong>Pinch</strong> or use <strong>+</strong> and <strong>-</strong> buttons to zoom.</p><br>
 			<p><strong>Long press</strong> to copy a colour from an existing pixel.</p><br>
 		</div>
 		<p>To change colour, choose any colour from the colour picker in the bottom left corner.</p><br>
-		<button id="close-help-popup"
-			onclick="document.querySelector('#help-popup').style.visibility = 'hidden';"><strong>I don't need help smh close this</strong></button>
-	</div>
-
-		<button id="about-button" onclick="document.querySelector('#about-popup').style.visibility = 'visible', document.querySelector('#about-popup-mobile').style.visibility = 'visible';">
-	<p><strong>About</strong></p>
+		<button id="close-info-popup" onclick="document.querySelector('#info-popup').style.visibility = 'hidden', document.querySelector('#info-button').style.visibility = 'visible';"><strong>I don't need help smh close this</strong>
+		</button>
+		<button id="about-button" onclick="document.querySelector('#about-popup').style.visibility = 'visible', document.querySelector('#about-popup-mobile').style.visibility = 'visible', document.querySelector('#info-popup').style.visibility = 'hidden', document.querySelector('#info-button').style.visibility = 'hidden';">
+		<p><strong>About</strong></p>
 	</button>
+	<button id="x-button" onclick="document.querySelector('#info-popup').style.visibility = 'hidden', document.querySelector('#info-button').style.visibility = 'visible';">
+		<p><strong>X</strong></p>
+	</button>
+	</div>
+	<div id="about-wrapper">
 	<div id="about-popup">
 		<p><strong>Welcome to DigyttPlace!</strong></p><br>
 		<p>This is a personal project created by Digytt, based off of the source code from this <a href="https://github.com/rbxb/place" target="_blank">GitHub</a> project.</p><br>
@@ -59,8 +62,11 @@
 		<p>If anyone gets access to this link, feel free to play around, however please don't go sharing it.</p><br>
 		<p>If you need help, use the "Help" button in the top left corner.</p><br>
 		<p>And of course, have fun!</p>
-		<button id="close-about-popup"
-			onclick="document.querySelector('#about-popup').style.visibility = 'hidden';"><strong>Close</strong></button>
+		<button id="close-about-popup" onclick="document.querySelector('#about-popup').style.visibility = 'hidden', document.querySelector('#info-popup').style.visibility = 'visible';"><strong>Close</strong>
+		</button>
+		<button id="x-button" onclick="document.querySelector('#about-popup').style.visibility = 'hidden', document.querySelector('#info-popup').style.visibility = 'visible';">
+		<p><strong>X</strong></p>
+	</button>
 	</div>
 	<div id="about-popup-mobile">
 		<p><strong>Welcome to DigyttPlace!</strong></p><br>
@@ -69,9 +75,13 @@
 		<p>If anyone gets access to this link, feel free to play around, however please don't go sharing it.</p><br>
 		<p>If you need help, use the "Help" button in the top left corner.</p><br>
 		<p>And of course, have fun!</p>
-		<button id="close-about-popup"
-			onclick="document.querySelector('#about-popup-mobile').style.visibility = 'hidden';"><strong>Close</strong></button>
+		<button id="close-about-popup" onclick="document.querySelector('#about-popup-mobile').style.visibility = 'hidden', document.querySelector('#info-popup').style.visibility = 'visible';"><strong>Close</strong>
+		</button>
+		<button id="x-button" onclick="document.querySelector('#about-popup-mobile').style.visibility = 'hidden', document.querySelector('#info-popup').style.visibility = 'visible';">
+		<p><strong>X</strong></p>
+	</button>
 	</div>		
+	</div>
 	
 	<script src="main.js"></script>
 	<script src="place.js"></script>

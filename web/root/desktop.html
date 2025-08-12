@@ -28,7 +28,7 @@
 		</div>
 	</div>
 
-	<button id="info-button" onclick="document.querySelector('#info-popup').style.visibility = 'visible';">
+	<button id="info-button" onclick="document.querySelector('#info-popup').style.visibility = 'visible', document.querySelector('#info-button').style.visibility = 'hidden', document.querySelector('#about-wrapper').style.visibility = 'visible';">
 		<p><strong>Info</strong></p>
 	</button>
 	<div id="info-popup">
@@ -45,22 +45,24 @@
 			<p><strong>Long press</strong> to copy a colour from an existing pixel.</p><br>
 		</div>
 		<p>To change colour, choose any colour from the colour picker in the bottom left corner.</p><br>
-		<button id="close-info-popup" onclick="document.querySelector('#info-popup').style.visibility = 'hidden', document.querySelector('#info-button').style.visibility = 'visible';"><strong>I don't need help smh close this</strong>
+		<p>To open this again at any time, use the "Info" button in the top left corner of the screen.</p><br>
+		<button id="close-info-popup" onclick="document.querySelector('#info-popup').style.visibility = 'hidden', document.querySelector('#info-button').style.visibility = 'visible', document.querySelector('#about-wrapper').style.visibility = 'hidden';"><strong>I don't need help smh close this</strong>
 		</button>
-		<button id="about-button" onclick="document.querySelector('#about-popup').style.visibility = 'visible', document.querySelector('#about-popup-mobile').style.visibility = 'visible', document.querySelector('#info-popup').style.visibility = 'hidden', document.querySelector('#info-button').style.visibility = 'hidden';">
+		<button id="about-button" onclick="document.querySelector('#about-popup').style.visibility = 'visible', document.querySelector('#about-popup-mobile').style.visibility = 'visible', document.querySelector('#about-wrapper').style.visibility = 'visible', document.querySelector('#info-popup').style.visibility = 'hidden', document.querySelector('#info-button').style.visibility = 'hidden';">
 		<p><strong>About</strong></p>
 	</button>
-	<button id="x-button" onclick="document.querySelector('#info-popup').style.visibility = 'hidden', document.querySelector('#info-button').style.visibility = 'visible';">
+	<button id="x-button" onclick="document.querySelector('#info-popup').style.visibility = 'hidden', document.querySelector('#info-button').style.visibility = 'visible', document.querySelector('#about-wrapper').style.visibility = 'hidden';">
 		<p><strong>X</strong></p>
 	</button>
 	</div>
-	<div id="about-wrapper" style="visibility: hidden;">
+	<div id="about-wrapper">
 	<div id="about-popup">
 		<p><strong>Welcome to DigyttPlace!</strong></p><br>
 		<p>This is a personal project created by Digytt, based off of the source code from this <a href="https://github.com/rbxb/place" target="_blank">GitHub</a> project.</p><br>
 		<p>This is my first personal coding project, so I hope you enjoy it!</p><br>
-		<p>If anyone gets access to this link, feel free to play around, however please don't go sharing it.</p><br>
-		<p>If you need help, use the "Help" button in the top left corner.</p><br>
+		<p><strong>THIS PROJECT IS STILL IN DEVELOPMENT!</strong> Things will not be perfect, and the server may be unstable.</p>
+		<p>If you find this link, feel free to play around! However, as stated, this project isn't finished, so don't post it publicly.</p><br>
+		<p>If you need help, use the "Info" button in the top left corner.</p><br>
 		<p>And of course, have fun!</p>
 		<button id="close-about-popup" onclick="document.querySelector('#about-popup').style.visibility = 'hidden', document.querySelector('#info-popup').style.visibility = 'visible';"><strong>Close</strong>
 		</button>
@@ -73,8 +75,9 @@
 		<p><strong>Welcome to DigyttPlace!</strong></p><br>
 		<p>This is a personal project created by Digytt, based off of the source code from this <a href="https://github.com/rbxb/place" target="_blank">GitHub</a> project.</p><br>
 		<p>This is my first personal coding project, so I hope you enjoy it!</p><br>
-		<p>If anyone gets access to this link, feel free to play around, however please don't go sharing it.</p><br>
-		<p>If you need help, use the "Help" button in the top left corner.</p><br>
+		<p><strong>THIS PROJECT IS STILL IN DEVELOPMENT!</strong> Things will not be perfect, and the server may be unstable.</p>
+		<p>If you find this link, feel free to play around! However, as stated, this project isn't finished, so don't post it publicly.</p><br>
+		<p>If you need help, use the "Info" button in the top left corner.</p><br>
 		<p>And of course, have fun!</p>
 		<button id="close-about-popup" onclick="document.querySelector('#about-popup-mobile').style.visibility = 'hidden', document.querySelector('#info-popup').style.visibility = 'visible';"><strong>Close</strong>
 		</button>

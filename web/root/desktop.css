@@ -8,6 +8,9 @@ body {
 	overflow: hidden;
 	position: fixed;
 	-webkit-overflow-scrolling: touch;
+	-webkit-user-select: none;
+  	-ms-user-select: none;
+  	user-select: none;
 }
 
 #viewport-canvas {
@@ -17,6 +20,7 @@ body {
 	image-rendering: pixelated;
 	width: 100vw;
 	height: 100vh;
+	touch-action: pan-x pan-y;
 	background-color: #888888;
 }
 
@@ -131,6 +135,7 @@ body {
 }
 
 #about-wrapper {
+	visibility: hidden;
 	position: fixed;
 	top: 50%;
 	left: 50%;
